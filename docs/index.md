@@ -7,13 +7,12 @@ title: MacSpeechApp Documentation
 
 Welcome to the MacSpeechApp documentation. This application helps you improve your text using OpenAI's GPT models and convert it to natural-sounding speech.
 
-## Quick Start
-
-1. [Download the latest release](https://github.com/tmm22/MacSpeech/releases/latest)
-2. Open the DMG file
-3. Drag MacSpeechApp to your Applications folder
-4. Launch the app
-5. Enter your OpenAI API key in settings
+## Quick Links
+- [Quick Start Guide](quick-start.md) - Get up and running in 5 minutes
+- [Advanced Usage](advanced-usage.md) - Power user techniques and best practices
+- [Latest Release](https://github.com/tmm22/MacSpeech/releases/latest) - Download the app
+- [FAQ](faq.md) - Common questions and answers
+- [Report Issues](https://github.com/tmm22/MacSpeech/issues) - Get help
 
 ## Features
 
@@ -21,6 +20,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Enhances your text using GPT models
 - Maintains original meaning while improving clarity and style
 - Real-time processing with status indicators
+- [Advanced text improvement techniques](advanced-usage.md#advanced-text-improvement-techniques)
 
 ### Text-to-Speech
 - Convert improved text to natural-sounding speech
@@ -31,11 +31,25 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
   - Onyx: Deep and resonant
   - Nova: Energetic and bright
   - Shimmer: Gentle and soothing
+- [Voice selection strategy guide](advanced-usage.md#voice-selection-strategy)
+
+### Appearance
+- Dark mode support with persistent preference
+- Clean, native macOS interface
+- Optimized UI for both light and dark themes
 
 ### Settings
 - Configure OpenAI API key
 - Choose GPT model
+- Toggle dark mode
 - Debug logging for troubleshooting
+- [Advanced settings usage](advanced-usage.md#advanced-settings-usage)
+
+### Power User Features
+- [Content creation workflows](advanced-usage.md#power-user-workflows)
+- [Integration with other apps](advanced-usage.md#integration-examples)
+- [Performance optimization](advanced-usage.md#performance-tips)
+- [Customization options](advanced-usage.md#customization-examples)
 
 ## System Requirements
 
@@ -46,6 +60,8 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 ## Support
 
 If you encounter any issues or have feature requests:
-1. Check our [FAQ](faq.md)
-2. [Submit an issue](https://github.com/tmm22/MacSpeech/issues/new/choose)
-3. [View existing issues](https://github.com/tmm22/MacSpeech/issues) 
+1. Check our [Quick Start Guide](quick-start.md)
+2. Review the [Advanced Usage Guide](advanced-usage.md)
+3. Review the [FAQ](faq.md)
+4. [Submit an issue](https://github.com/tmm22/MacSpeech/issues/new/choose)
+5. [View existing issues](https://github.com/tmm22/MacSpeech/issues) 

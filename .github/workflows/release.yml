@@ -33,51 +33,60 @@ jobs:
           zip "MacSpeechApp-${{ env.VERSION }}.zip" MacSpeechApp.dmg
       
       - name: Generate Release Notes
-        id: release_notes
         run: |
-          # Get commit messages since last tag
-          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
-          
-          # Function to extract commits by type
-          extract_commits() {
-            local type=$1
-            local pattern=$2
-            local commits=$3
-            local matches=$(echo "$commits" | grep -i "^$pattern" || true)
-            if [ ! -z "$matches" ]; then
-              echo "### $type"
-              echo ""
-              echo "$matches" | sed -E "s/^$pattern[[:space:]]*/- /"
-              echo ""
-            fi
-          }
-          
-          if [ -z "$PREVIOUS_TAG" ]; then
-            COMMITS=$(git log --pretty=format:"%s")
-          else
-            COMMITS=$(git log --pretty=format:"%s" $PREVIOUS_TAG..HEAD)
-          fi
-          
-          {
-            echo "# MacSpeechApp ${{ env.VERSION }}"
-            echo ""
-            extract_commits "🚀 New Features" "feat:|feature:|add:" "$COMMITS"
-            extract_commits "🐛 Bug Fixes" "fix:|bug:|patch:" "$COMMITS"
-            extract_commits "📝 Documentation" "docs:|doc:" "$COMMITS"
-            extract_commits "🔧 Maintenance" "chore:|refactor:|style:|test:" "$COMMITS"
-            extract_commits "⚡️ Performance" "perf:|optimize:" "$COMMITS"
-            echo "## Installation"
-            echo ""
-            echo "1. Download MacSpeechApp.dmg"
-            echo "2. Open the DMG file"
-            echo "3. Drag MacSpeechApp to your Applications folder"
-            echo "4. Launch and enter your OpenAI API key"
-            echo ""
-            echo "## Requirements"
-            echo ""
-            echo "- macOS 11.0 or later"
-            echo "- OpenAI API key"
-          } > release_notes.md
+          cat > release_notes.md << 'EOL'
+          # MacSpeechApp v${{ env.VERSION }}
+
+          ## 🚀 New Features & Improvements
+          - Added comprehensive advanced usage documentation
+          - Enhanced voice selection strategies
+          - Added power user workflows
+          - Improved integration examples
+
+          ## 📝 Documentation Updates
+          - Added detailed Advanced Usage Guide covering:
+            - Text improvement techniques
+            - Voice selection strategies
+            - Power user workflows
+            - Integration examples
+            - Performance optimization
+            - Troubleshooting guides
+          - Enhanced main documentation with better navigation
+          - Added cross-references between documentation sections
+          - Improved quick links and feature descriptions
+
+          ## 🎨 Voice Selection Guide
+          Added detailed voice recommendations for different content types:
+          - Business Reports: Onyx (Professional, authoritative)
+          - Children's Stories: Shimmer (Gentle, engaging)
+          - News Articles: Alloy (Neutral, clear)
+          - Educational Content: Echo (Warm, instructional)
+          - Creative Writing: Fable (Dynamic, expressive)
+          - Marketing Copy: Nova (Energetic, persuasive)
+
+          ## 💡 Advanced Features
+          - Added content creation workflows
+          - Added quality assurance guidelines
+          - Added performance optimization tips
+          - Added integration examples with other apps
+
+          ## 🔧 Technical Improvements
+          - Added debug logging patterns
+          - Enhanced API usage optimization guide
+          - Added memory management recommendations
+          - Added network optimization tips
+
+          ## Installation
+          1. Download MacSpeechApp.dmg
+          2. Open the DMG file
+          3. Drag MacSpeechApp to your Applications folder
+          4. Launch and enter your OpenAI API key
+
+          ## Requirements
+          - macOS 11.0 or later
+          - OpenAI API key
+          - Internet connection
+          EOL
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
