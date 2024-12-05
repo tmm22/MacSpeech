@@ -32,13 +32,30 @@ jobs:
           cd Build
           zip "MacSpeechApp-${{ env.VERSION }}.zip" MacSpeechApp.dmg
       
+      - name: Read Release Notes
+        id: release_notes
+        run: |
+          echo 'NOTES<<EOF' >> $GITHUB_OUTPUT
+          cat release_notes.md >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+      
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/create-release@v1
         with:
-          name: "MacSpeechApp ${{ env.VERSION }}"
-          body_path: release_notes.md
+          tag_name: v${{ env.VERSION }}
+          release_name: "MacSpeechApp ${{ env.VERSION }}"
+          body: ${{ steps.release_notes.outputs.NOTES }}
           draft: false
           prerelease: false
-          files: |
-            Build/MacSpeechApp.dmg
-            Build/MacSpeechApp-${{ env.VERSION }}.zip 
+      
+      - name: Upload Release Assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: Build/MacSpeechApp.dmg
+          asset_name: MacSpeechApp.dmg
+          asset_content_type: application/octet-stream 
