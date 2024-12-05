@@ -1,0 +1,11 @@
+theme: jekyll-theme-cayman
+title: MacSpeechApp
+description: Improve your text and convert it to natural speech using OpenAI
+show_downloads: true
+google_analytics:
+github:
+  is_project_page: true
+  repository_url: https://github.com/tmm22/MacSpeech
+  repository_name: MacSpeech
+  owner_url: https://github.com/tmm22
+  owner_name: tmm22 
