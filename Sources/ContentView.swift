@@ -53,6 +53,32 @@ struct ContentView: View {
                                 .padding(5)
                             }
                             
+                            // Model Selection
+                            GroupBox {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Model Selection")
+                                        .font(.headline)
+                                    if openAIService.availableModels.isEmpty {
+                                        Text("No models available. Please check your API key.")
+                                            .foregroundColor(.secondary)
+                                    } else {
+                                        Picker("Model", selection: $openAIService.selectedModel) {
+                                            ForEach(openAIService.availableModels, id: \.self) { model in
+                                                Text(model)
+                                                    .tag(model)
+                                            }
+                                        }
+                                        .pickerStyle(.menu)
+                                        
+                                        Text("GPT-4 models provide better results but cost more. GPT-3.5 models are faster and more cost-effective.")
+                                            .font(.caption)
+                                            .foregroundColor(.secondary)
+                                            .fixedSize(horizontal: false, vertical: true)
+                                    }
+                                }
+                                .padding(5)
+                            }
+                            
                             // Appearance Settings
                             GroupBox {
                                 VStack(alignment: .leading, spacing: 10) {
@@ -296,6 +322,32 @@ struct ContentView: View {
                                 UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
                             }
                             .buttonStyle(.borderedProminent)
+                        }
+                        .padding(5)
+                    }
+                    
+                    // Model Selection
+                    GroupBox {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Model Selection")
+                                .font(.headline)
+                            if openAIService.availableModels.isEmpty {
+                                Text("No models available. Please check your API key.")
+                                    .foregroundColor(.secondary)
+                            } else {
+                                Picker("Model", selection: $openAIService.selectedModel) {
+                                    ForEach(openAIService.availableModels, id: \.self) { model in
+                                        Text(model)
+                                            .tag(model)
+                                    }
+                                }
+                                .pickerStyle(.menu)
+                                
+                                Text("GPT-4 models provide better results but cost more. GPT-3.5 models are faster and more cost-effective.")
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
                         }
                         .padding(5)
                     }

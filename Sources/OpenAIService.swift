@@ -97,19 +97,17 @@ class OpenAIService: ObservableObject {
                 let supportedModels = result.data
                     .map { $0.id }
                     .filter { model in
-                        // Include all GPT models
-                        model.contains("gpt-") ||
-                        // Include all embedding models
-                        model.contains("text-embedding-") ||
-                        // Include all DALL-E models
-                        model.contains("dall-e") ||
-                        // Include all other models you want to support
-                        model.contains("tts-") || // Text-to-speech models
-                        model.contains("whisper-") // Speech-to-text models
+                        // Only include GPT models
+                        model.contains("gpt-") &&
+                        // Exclude instruct models and other variants
+                        !model.contains("instruct") &&
+                        !model.contains("vision") &&
+                        !model.contains("0301") &&  // Older versions
+                        !model.contains("0314")     // Older versions
                     }
                     .sorted { model1, model2 in
                         // Sort by model family
-                        let families = ["gpt-4", "gpt-3.5", "dall-e", "text-embedding", "tts", "whisper"]
+                        let families = ["gpt-4", "gpt-3.5"]
                         let getModelPriority = { (model: String) -> Int in
                             if let index = families.firstIndex(where: { model.contains($0) }) {
                                 return index
