@@ -54,6 +54,7 @@ struct ContentView: View {
                             }
                         }
                         .navigationTitle("Settings")
+                        .frame(minWidth: 400, minHeight: 300)
                     }
                 }
             }
@@ -175,6 +176,23 @@ struct ContentView: View {
                     .frame(height: 100)
                 }
             }
+            
+            Spacer()
+            
+            Button(action: {
+                if let url = URL(string: "https://github.com/tmm22/MacSpeech") {
+                    NSWorkspace.shared.open(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "github")
+                    Text("Contribute on GitHub")
+                }
+                .padding(.vertical, 4)
+                .padding(.horizontal, 8)
+            }
+            .buttonStyle(.link)
+            .font(.caption)
             
             HStack(spacing: 20) {
                 Button(action: {
