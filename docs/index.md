@@ -23,6 +23,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Maintains original meaning while improving clarity and style
 - Real-time processing with status indicators
 - [Advanced text improvement techniques](advanced-usage.md#advanced-text-improvement-techniques)
+- [Detailed guide](features/text-improvement.md)
 
 ### Text-to-Speech
 - Convert improved text to natural-sounding speech
@@ -34,17 +35,20 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
   - Nova: Energetic and bright
   - Shimmer: Gentle and soothing
 - [Voice selection strategy guide](advanced-usage.md#voice-selection-strategy)
+- [Detailed guide](features/text-to-speech.md)
 
 ### Speech-to-Text
 - Record speech using device microphone
 - Automatic transcription
 - Permission management
 - Clear status indicators
+- [Complete guide](features/speech-to-text.md)
 
 ### Appearance
 - Dark mode support with persistent preference
 - Clean, native macOS interface
 - Optimized UI for both light and dark themes
+- [UI customization guide](features/appearance.md)
 
 ### Community & Contribution
 - Direct GitHub access from the app
@@ -52,6 +56,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Open source collaboration support
 - Active community engagement
 - [Documentation guidelines](contribution-guide.md)
+- [Community guide](features/community.md)
 
 ### Settings
 - Configure OpenAI API key
@@ -59,12 +64,24 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Toggle dark mode
 - Debug logging for troubleshooting
 - [Advanced settings usage](advanced-usage.md#advanced-settings-usage)
+- [Settings guide](features/settings.md)
 
 ### Power User Features
 - [Content creation workflows](advanced-usage.md#power-user-workflows)
 - [Integration with other apps](advanced-usage.md#integration-examples)
 - [Performance optimization](advanced-usage.md#performance-tips)
 - [Customization options](advanced-usage.md#customization-examples)
+- [Power user guide](features/power-user.md)
+
+## Feature Documentation
+For detailed information about each feature, visit our feature guides:
+- [Text Improvement Guide](features/text-improvement.md)
+- [Text-to-Speech Guide](features/text-to-speech.md)
+- [Speech-to-Text Guide](features/speech-to-text.md)
+- [Settings Guide](features/settings.md)
+- [Appearance Guide](features/appearance.md)
+- [Community Guide](features/community.md)
+- [Power User Guide](features/power-user.md)
 
 ## System Requirements
 
