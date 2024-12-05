@@ -3,11 +3,13 @@ import AppKit
 
 @main
 struct MacSpeechApp: App {
+    @AppStorage("isDarkMode") private var isDarkMode = false
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(isDarkMode ? .dark : .light)
         }
     }
 }

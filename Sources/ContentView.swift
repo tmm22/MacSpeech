@@ -11,6 +11,7 @@ struct ContentView: View {
     @State private var errorMessage: String?
     @State private var selectedVoice = "alloy"
     @State private var isSpeaking = false
+    @AppStorage("isDarkMode") private var isDarkMode = false
     
     private let availableVoices = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
     
@@ -21,6 +22,43 @@ struct ContentView: View {
     
     var body: some View {
         VStack(spacing: 20) {
+            HStack {
+                Spacer()
+                Button(action: { showSettings.toggle() }) {
+                    Image(systemName: "gear")
+                        .imageScale(.large)
+                }
+                .sheet(isPresented: $showSettings) {
+                    NavigationView {
+                        Form {
+                            Section(header: Text("API Settings")) {
+                                SecureField("OpenAI API Key", text: $apiKey)
+                                Button("Save API Key") {
+                                    openAIService.updateAPIKey(apiKey)
+                                    UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
+                                }
+                            }
+                            
+                            Section(header: Text("Appearance")) {
+                                Toggle(isOn: $isDarkMode) {
+                                    Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
+                                }
+                            }
+                            
+                            Section(header: Text("Debug")) {
+                                Toggle("Show Debug Logs", isOn: $showDebugLogs)
+                                if showDebugLogs {
+                                    Text(openAIService.debugLog)
+                                        .font(.system(.caption, design: .monospaced))
+                                }
+                            }
+                        }
+                        .navigationTitle("Settings")
+                    }
+                }
+            }
+            .padding(.horizontal)
+            
             GroupBox(label: Text("Input Text").bold()) {
                 TextEditor(text: $inputText)
                     .frame(height: 100)
@@ -29,6 +67,7 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 4)
                             .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                     )
+                    .background(Color(.textBackgroundColor))
             }
             
             Button(action: {
@@ -52,18 +91,12 @@ struct ContentView: View {
                         .progressViewStyle(CircularProgressViewStyle())
                         .frame(width: 150)
                 } else {
-                    Label("Improve Text", systemImage: "wand.and.stars")
+                    Text("Improve Text")
                         .frame(width: 150)
                 }
             }
             .buttonStyle(.borderedProminent)
             .disabled(inputText.isEmpty || isProcessing)
-            
-            if let error = errorMessage {
-                Text(error)
-                    .foregroundColor(.red)
-                    .font(.caption)
-            }
             
             GroupBox(label: Text("Improved Text").bold()) {
                 TextEditor(text: .constant(improvedText))
@@ -73,6 +106,7 @@ struct ContentView: View {
                         RoundedRectangle(cornerRadius: 4)
                             .stroke(Color.gray.opacity(0.2), lineWidth: 1)
                     )
+                    .background(Color(.textBackgroundColor))
                 
                 HStack {
                     Picker("Voice", selection: $selectedVoice) {
@@ -119,20 +153,26 @@ struct ContentView: View {
                                 .frame(width: 100)
                         }
                     }
+                    .buttonStyle(.borderedProminent)
                     .disabled(improvedText.isEmpty || isSpeaking)
                 }
                 .padding(.top, 8)
+            }
+            
+            if let errorMessage = errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.caption)
             }
             
             if showDebugLogs {
                 GroupBox(label: Text("Debug Logs").bold()) {
                     ScrollView {
                         Text(openAIService.debugLog)
-                            .font(.system(.body, design: .monospaced))
+                            .font(.system(.caption, design: .monospaced))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(5)
                     }
-                    .frame(height: 200)
+                    .frame(height: 100)
                 }
             }
             
