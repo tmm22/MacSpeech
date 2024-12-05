@@ -1,6 +1,24 @@
 # Changelog
 
-## Version 1.0.5 (Latest)
+## Version 1.0.6 (Latest)
+
+### 🚀 New Features
+- Added "Contribute on GitHub" button for easy repository access
+- Enhanced community engagement features
+- Improved open source collaboration support
+
+### 🎨 UI Improvements
+- Added GitHub button with icon at the bottom of the window
+- Integrated with system browser for repository access
+- Maintained consistent UI styling with app theme
+
+### 📝 Documentation Updates
+- Added community participation section to documentation
+- Enhanced contribution guidelines
+- Updated quick start guide with GitHub integration
+- Improved feature documentation
+
+## Version 1.0.5
 
 ### 🚀 New Features & Improvements
 - Added comprehensive advanced usage documentation

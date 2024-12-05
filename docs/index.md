@@ -13,6 +13,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - [Latest Release](https://github.com/tmm22/MacSpeech/releases/latest) - Download the app
 - [FAQ](faq.md) - Common questions and answers
 - [Report Issues](https://github.com/tmm22/MacSpeech/issues) - Get help
+- [Contribute](https://github.com/tmm22/MacSpeech) - Join the development
 
 ## Features
 
@@ -38,6 +39,12 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Clean, native macOS interface
 - Optimized UI for both light and dark themes
 
+### Community & Contribution
+- Direct GitHub access from the app
+- Easy bug reporting and feature requests
+- Open source collaboration support
+- Active community engagement
+
 ### Settings
 - Configure OpenAI API key
 - Choose GPT model
@@ -56,6 +63,14 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - macOS 11.0 or later
 - OpenAI API key
 - Internet connection
+
+## Contributing
+
+We welcome contributions! You can:
+1. Click the "Contribute on GitHub" button in the app
+2. Visit our [GitHub repository](https://github.com/tmm22/MacSpeech)
+3. Submit issues or feature requests
+4. Contribute code or documentation
 
 ## Support
 
