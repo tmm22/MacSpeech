@@ -54,8 +54,10 @@ struct ContentView: View {
                             }
                         }
                         .navigationTitle("Settings")
-                        .frame(minWidth: 400, minHeight: 300)
+                        .frame(maxWidth: 400)
                     }
+                    .frame(width: 400, height: 400)
+                    .fixedSize()
                 }
             }
             .padding(.horizontal)
