@@ -2,12 +2,14 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var openAIService: OpenAIService
+    @StateObject private var audioRecorder = AudioRecorder()
     @State private var showSettings = false
     @State private var apiKey: String = UserDefaults.standard.string(forKey: "OpenAIAPIKey") ?? ""
     @State private var showDebugLogs = false
     @State private var inputText: String = ""
     @State private var improvedText: String = ""
     @State private var isProcessing = false
+    @State private var isTranscribing = false
     @State private var errorMessage: String?
     @State private var selectedVoice = "alloy"
     @State private var isSpeaking = false
@@ -226,10 +228,76 @@ struct ContentView: View {
                 .padding(.top, 8)
             }
             
-            if let errorMessage = errorMessage {
-                Text(errorMessage)
+            // Speech to Text Section
+            GroupBox(label: Text("Speech to Text").bold()) {
+                VStack(spacing: 10) {
+                    if !audioRecorder.permissionGranted {
+                        VStack(spacing: 10) {
+                            if let error = audioRecorder.permissionError {
+                                Text(error)
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.center)
+                            } else {
+                                Text("Microphone access is required for speech-to-text.")
+                                    .foregroundColor(.secondary)
+                            }
+                            Button("Request Permissions") {
+                                audioRecorder.requestPermissions()
+                            }
+                            .buttonStyle(.borderedProminent)
+                            Button("Open System Settings") {
+                                if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Microphone") {
+                                    NSWorkspace.shared.open(url)
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                        }
+                        .padding()
+                    } else {
+                        HStack {
+                            Button(action: {
+                                if audioRecorder.isRecording {
+                                    audioRecorder.stopRecording()
+                                    Task {
+                                        isTranscribing = true
+                                        if let audioData = audioRecorder.getAudioData() {
+                                            do {
+                                                inputText = try await openAIService.transcribeAudio(audioData)
+                                            } catch {
+                                                errorMessage = error.localizedDescription
+                                            }
+                                        }
+                                        isTranscribing = false
+                                        audioRecorder.cleanup()
+                                    }
+                                } else {
+                                    audioRecorder.startRecording()
+                                }
+                            }) {
+                                if isTranscribing {
+                                    ProgressView()
+                                        .progressViewStyle(CircularProgressViewStyle())
+                                        .frame(width: 150)
+                                } else {
+                                    Label(
+                                        audioRecorder.isRecording ? "Stop Recording" : "Start Recording",
+                                        systemImage: audioRecorder.isRecording ? "stop.circle.fill" : "mic.circle.fill"
+                                    )
+                                    .frame(width: 150)
+                                }
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .disabled(isTranscribing)
+                        }
+                    }
+                }
+            }
+            
+            if let error = errorMessage {
+                Text(error)
                     .foregroundColor(.red)
-                    .font(.caption)
+                    .multilineTextAlignment(.center)
+                    .padding()
             }
             
             if showDebugLogs {
@@ -300,101 +368,7 @@ struct ContentView: View {
             Spacer()
         }
         .padding()
-        .frame(minWidth: 600, minHeight: 700)
-        .sheet(isPresented: $showSettings) {
-            VStack(spacing: 20) {
-                // Header
-                Text("Settings")
-                    .font(.title)
-                    .bold()
-                
-                // Content
-                VStack(spacing: 20) {
-                    // API Settings
-                    GroupBox {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("API Settings")
-                                .font(.headline)
-                            SecureField("OpenAI API Key", text: $apiKey)
-                                .textFieldStyle(.roundedBorder)
-                            Button("Save API Key") {
-                                openAIService.updateAPIKey(apiKey)
-                                UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
-                            }
-                            .buttonStyle(.borderedProminent)
-                        }
-                        .padding(5)
-                    }
-                    
-                    // Model Selection
-                    GroupBox {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Model Selection")
-                                .font(.headline)
-                            if openAIService.availableModels.isEmpty {
-                                Text("No models available. Please check your API key.")
-                                    .foregroundColor(.secondary)
-                            } else {
-                                Picker("Model", selection: $openAIService.selectedModel) {
-                                    ForEach(openAIService.availableModels, id: \.self) { model in
-                                        Text(model)
-                                            .tag(model)
-                                    }
-                                }
-                                .pickerStyle(.menu)
-                                
-                                Text("GPT-4 models provide better results but cost more. GPT-3.5 models are faster and more cost-effective.")
-                                    .font(.caption)
-                                    .foregroundColor(.secondary)
-                                    .fixedSize(horizontal: false, vertical: true)
-                            }
-                        }
-                        .padding(5)
-                    }
-                    
-                    // Appearance Settings
-                    GroupBox {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Appearance")
-                                .font(.headline)
-                            Toggle(isOn: $isDarkMode) {
-                                Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
-                            }
-                        }
-                        .padding(5)
-                    }
-                    
-                    // Debug Settings
-                    GroupBox {
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text("Debug")
-                                .font(.headline)
-                            Toggle("Show Debug Logs", isOn: $showDebugLogs)
-                            if showDebugLogs {
-                                ScrollView {
-                                    Text(openAIService.debugLog)
-                                        .font(.system(.caption, design: .monospaced))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                                .frame(height: 100)
-                                .background(Color(.textBackgroundColor))
-                                .cornerRadius(4)
-                            }
-                        }
-                        .padding(5)
-                    }
-                }
-                .frame(width: 400)
-                
-                Spacer()
-                
-                Button("Close") {
-                    showSettings = false
-                }
-                .keyboardShortcut(.escape)
-            }
-            .padding(20)
-            .frame(width: 440, height: 500)
-        }
+        .frame(minWidth: 500, minHeight: 600)
+        .preferredColorScheme(isDarkMode ? .dark : .light)
     }
 } 

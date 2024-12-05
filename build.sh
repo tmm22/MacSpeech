@@ -44,9 +44,25 @@ cat > "$CONTENTS_DIR/Info.plist" << EOF
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
+    <string>1.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1.1.0</string>
     <key>LSMinimumSystemVersion</key>
     <string>13.0</string>
+    <key>LSApplicationCategoryType</key>
+    <string>public.app-category.productivity</string>
+    <key>LSUIElement</key>
+    <false/>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSCameraUsageDescription</key>
+    <string>MacSpeech requires camera access for audio session setup.</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>MacSpeech needs access to your microphone to record speech for transcription.</string>
+    <key>NSPrincipalClass</key>
+    <string>NSApplication</string>
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>MacSpeech needs access to speech recognition to transcribe your speech.</string>
     <key>CFBundleSupportedPlatforms</key>
     <array>
         <string>MacOSX</string>

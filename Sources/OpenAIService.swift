@@ -215,7 +215,7 @@ class OpenAIService: ObservableObject {
                 throw OpenAIError(error: .init(message: "Invalid response type", type: "invalid_response", param: nil, code: nil))
             }
             
-            log("📥 Response status code: \(httpResponse.statusCode)")
+            log("�� Response status code: \(httpResponse.statusCode)")
             
             if httpResponse.statusCode != 200 {
                 let errorData = try? JSONDecoder().decode(OpenAIError.self, from: data)
@@ -444,10 +444,6 @@ class OpenAIService: ObservableObject {
     }
     
     func transcribeAudio(_ audioData: Data, language: String? = nil) async throws -> String {
-        guard selectedModel.contains("whisper") else {
-            throw OpenAIError(error: .init(message: "Selected model is not a speech-to-text model", type: "invalid_model", param: nil, code: nil))
-        }
-        
         log("👂 Transcribing audio")
         
         // Create multipart form data
@@ -457,7 +453,7 @@ class OpenAIService: ObservableObject {
         // Add model field
         bodyData.append("--\(boundary)\r\n".data(using: .utf8)!)
         bodyData.append("Content-Disposition: form-data; name=\"model\"\r\n\r\n".data(using: .utf8)!)
-        bodyData.append("\(selectedModel)\r\n".data(using: .utf8)!)
+        bodyData.append("whisper-1\r\n".data(using: .utf8)!)
         
         // Add language field if specified
         if let language = language {

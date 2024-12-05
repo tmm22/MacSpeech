@@ -5,7 +5,7 @@
 	<key>CFBundleExecutable</key>
 	<string>MacSpeechApp</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.example.MacSpeech</string>
+	<string>com.example.MacSpeechApp</string>
 	<key>CFBundleName</key>
 	<string>MacSpeech</string>
 	<key>CFBundlePackageType</key>
@@ -22,6 +22,8 @@
 	<false/>
 	<key>NSHighResolutionCapable</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>MacSpeech requires camera access for audio session setup.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>MacSpeech needs access to your microphone to record speech for transcription.</string>
 	<key>NSPrincipalClass</key>
