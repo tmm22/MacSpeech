@@ -6,6 +6,7 @@ A macOS application that improves text using OpenAI's GPT models and can convert
 
 - Text improvement using GPT models
 - Text-to-speech conversion with multiple voice options
+- Dark mode support with persistent preferences
 - Clean, native macOS interface
 - Real-time processing status indicators
 - Debug logging support
@@ -30,15 +31,19 @@ A macOS application that improves text using OpenAI's GPT models and can convert
 3. Once improved, you can:
    - Copy the improved text
    - Select a voice and click the speaker button to hear it read aloud
+4. Customize your experience:
+   - Toggle dark mode in settings
+   - Choose from multiple voice options
+   - Enable debug logging for troubleshooting
 
 ## Available Voices
 
-- Alloy
-- Echo
-- Fable
-- Onyx
-- Nova
-- Shimmer
+- Alloy: Neutral and balanced
+- Echo: Warm and conversational
+- Fable: Authoritative and clear
+- Onyx: Deep and resonant
+- Nova: Energetic and bright
+- Shimmer: Gentle and soothing
 
 ## Building from Source
 
@@ -46,6 +51,10 @@ A macOS application that improves text using OpenAI's GPT models and can convert
 2. Make sure you have Xcode installed
 3. Run `./build.sh` to build the application
 4. Find the built app in `.build/release/MacSpeechApp.app`
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed release notes and version history.
 
 ## License
 
