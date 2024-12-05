@@ -1,28 +1,31 @@
-# MacSpeechApp v1.1.1
+# MacSpeechApp v1.1.2
 
-## 🚀 New Features & Improvements
-- Fixed AudioRecorder permissions handling
-- Added proper error states and user feedback
-- Improved permission request flow
-- Added better error handling in ContentView
+## 📝 Documentation Improvements
+- Added comprehensive contribution guide
+- Added documentation checklists for different change types
+- Enhanced main documentation with better organization
+- Added detailed guidelines for contributors
 
-## 🔧 Technical Improvements
-- Updated privacy keys in Info.plist
-- Added proper error handling for all potential failure points
-- Improved permission request workflow
-- Enhanced error state display in UI
+## 🔧 Process Improvements
+- Improved release notes handling
+- Added structured documentation process
+- Enhanced version management
+- Added clear contribution workflows
 
-## 🎨 UI Improvements
-- Added clear error messages for permission issues
-- Added dedicated "Request Permissions" button
-- Improved permission request UI flow
-- Made System Settings button more intuitive
+## 🎨 Documentation Structure
+- Added new contribution guide sections:
+  - Feature addition checklist
+  - Bug fix documentation process
+  - UI change documentation
+  - Release process checklist
+- Improved documentation organization
+- Added clear examples and guidelines
 
-## 🐛 Bug Fixes
-- Fixed app crashing issues related to permissions
-- Fixed AudioRecorder initialization timing
-- Fixed permission request handling
-- Fixed error display in ContentView
+## 💡 Developer Experience
+- Added commit message guidelines
+- Added pull request templates
+- Enhanced documentation workflow
+- Improved contribution process
 
 ## Installation
 1. Download MacSpeechApp.dmg
@@ -33,4 +36,5 @@
 ## Requirements
 - macOS 11.0 or later
 - OpenAI API key
-- Internet connection 
+- Internet connection
+- Microphone access for speech-to-text 

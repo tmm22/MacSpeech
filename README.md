@@ -6,16 +6,50 @@ A macOS application that improves text using OpenAI's GPT models and can convert
 
 - Text improvement using GPT models
 - Text-to-speech conversion with multiple voice options
+- Speech-to-text transcription with microphone
 - Dark mode support with persistent preferences
 - Clean, native macOS interface
 - Real-time processing status indicators
 - Debug logging support
 - Configurable API settings
+- Robust error handling and user feedback
+- Proper permission management
+- GitHub integration for community involvement
+
+## Core Capabilities
+
+### Text Processing
+- Smart text improvement using GPT
+- Multiple model options (GPT-4, GPT-3.5)
+- Real-time processing indicators
+- Error handling and recovery
+
+### Speech Features
+- Text-to-speech with multiple voices
+- Speech-to-text transcription
+- Microphone permission management
+- Clear audio status feedback
+
+### User Interface
+- Dark mode support
+- Native macOS design
+- Intuitive settings panel
+- Permission request handling
+- Clear error messaging
+- Progress indicators
+
+### Development
+- GitHub integration
+- Comprehensive documentation
+- Debug logging
+- Community contribution support
 
 ## Requirements
 
 - macOS 11.0 or later
 - OpenAI API key
+- Microphone access for speech-to-text
+- Internet connection
 
 ## Installation
 
@@ -26,15 +60,17 @@ A macOS application that improves text using OpenAI's GPT models and can convert
 
 ## Usage
 
-1. Enter your text in the input field
+1. Enter your text in the input field or use speech-to-text
 2. Click "Improve" to enhance the text using GPT
 3. Once improved, you can:
    - Copy the improved text
    - Select a voice and click the speaker button to hear it read aloud
+   - Use speech-to-text for new input
 4. Customize your experience:
    - Toggle dark mode in settings
    - Choose from multiple voice options
    - Enable debug logging for troubleshooting
+   - Configure API settings
 
 ## Available Voices
 
