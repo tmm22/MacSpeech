@@ -1,0 +1,34 @@
+# Xcode
+.DS_Store
+xcuserdata/
+*.xcscmblueprint
+*.xccheckout
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Build/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Logs and databases
+*.log
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+# Environment variables
+.env
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~ 
