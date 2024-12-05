@@ -12,6 +12,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - [Advanced Usage](advanced-usage.md) - Power user techniques and best practices
 - [Latest Release](https://github.com/tmm22/MacSpeech/releases/latest) - Download the app
 - [FAQ](faq.md) - Common questions and answers
+- [Contribution Guide](contribution-guide.md) - Documentation checklists and guidelines
 - [Report Issues](https://github.com/tmm22/MacSpeech/issues) - Get help
 - [Contribute](https://github.com/tmm22/MacSpeech) - Join the development
 
@@ -34,6 +35,12 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
   - Shimmer: Gentle and soothing
 - [Voice selection strategy guide](advanced-usage.md#voice-selection-strategy)
 
+### Speech-to-Text
+- Record speech using device microphone
+- Automatic transcription
+- Permission management
+- Clear status indicators
+
 ### Appearance
 - Dark mode support with persistent preference
 - Clean, native macOS interface
@@ -44,6 +51,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Easy bug reporting and feature requests
 - Open source collaboration support
 - Active community engagement
+- [Documentation guidelines](contribution-guide.md)
 
 ### Settings
 - Configure OpenAI API key
@@ -63,14 +71,15 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - macOS 11.0 or later
 - OpenAI API key
 - Internet connection
+- Microphone access for speech-to-text
 
 ## Contributing
 
-We welcome contributions! You can:
-1. Click the "Contribute on GitHub" button in the app
-2. Visit our [GitHub repository](https://github.com/tmm22/MacSpeech)
-3. Submit issues or feature requests
-4. Contribute code or documentation
+We welcome contributions! Here's how to get started:
+1. Read our [Contribution Guide](contribution-guide.md)
+2. Check the documentation checklists
+3. Follow our commit message guidelines
+4. Submit a pull request
 
 ## Support
 
