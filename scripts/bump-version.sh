@@ -50,10 +50,31 @@ echo "$NEW_VERSION" > version.txt
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $NEW_VERSION" Resources/Info.plist
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $NEW_VERSION" Resources/Info.plist
 
+# Create git tag with release notes template
+RELEASE_NOTES=$(cat << EOF
+feat: Release version $NEW_VERSION
+
+Key changes in this release:
+- 
+
+For a full list of changes, see the changelog.
+EOF
+)
+
 # Create git tag
 git add version.txt Resources/Info.plist
-git commit -m "Bump version to $NEW_VERSION"
+git commit -m "$RELEASE_NOTES"
 git tag -a "v$NEW_VERSION" -m "Release version $NEW_VERSION"
 
 echo "Version bumped to $NEW_VERSION"
-echo "Run 'git push && git push --tags' to publish" 
+echo ""
+echo "Next steps:"
+echo "1. Edit the commit message to add release notes"
+echo "2. Run 'git push && git push --tags' to publish"
+echo ""
+echo "Commit message format for better changelogs:"
+echo "feat: Add new feature"
+echo "fix: Fix a bug"
+echo "docs: Update documentation"
+echo "chore: Maintenance work"
+echo "perf: Performance improvements" 
