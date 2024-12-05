@@ -29,35 +29,73 @@ struct ContentView: View {
                         .imageScale(.large)
                 }
                 .sheet(isPresented: $showSettings) {
-                    NavigationView {
-                        Form {
-                            Section(header: Text("API Settings")) {
-                                SecureField("OpenAI API Key", text: $apiKey)
-                                Button("Save API Key") {
-                                    openAIService.updateAPIKey(apiKey)
-                                    UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
+                    VStack(spacing: 20) {
+                        // Header
+                        Text("Settings")
+                            .font(.title)
+                            .bold()
+                        
+                        // Content
+                        VStack(spacing: 20) {
+                            // API Settings
+                            GroupBox {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("API Settings")
+                                        .font(.headline)
+                                    SecureField("OpenAI API Key", text: $apiKey)
+                                        .textFieldStyle(.roundedBorder)
+                                    Button("Save API Key") {
+                                        openAIService.updateAPIKey(apiKey)
+                                        UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
+                                    }
+                                    .buttonStyle(.borderedProminent)
                                 }
+                                .padding(5)
                             }
                             
-                            Section(header: Text("Appearance")) {
-                                Toggle(isOn: $isDarkMode) {
-                                    Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
+                            // Appearance Settings
+                            GroupBox {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Appearance")
+                                        .font(.headline)
+                                    Toggle(isOn: $isDarkMode) {
+                                        Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
+                                    }
                                 }
+                                .padding(5)
                             }
                             
-                            Section(header: Text("Debug")) {
-                                Toggle("Show Debug Logs", isOn: $showDebugLogs)
-                                if showDebugLogs {
-                                    Text(openAIService.debugLog)
-                                        .font(.system(.caption, design: .monospaced))
+                            // Debug Settings
+                            GroupBox {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Debug")
+                                        .font(.headline)
+                                    Toggle("Show Debug Logs", isOn: $showDebugLogs)
+                                    if showDebugLogs {
+                                        ScrollView {
+                                            Text(openAIService.debugLog)
+                                                .font(.system(.caption, design: .monospaced))
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                        }
+                                        .frame(height: 100)
+                                        .background(Color(.textBackgroundColor))
+                                        .cornerRadius(4)
+                                    }
                                 }
+                                .padding(5)
                             }
                         }
-                        .navigationTitle("Settings")
-                        .frame(maxWidth: 400)
+                        .frame(width: 400)
+                        
+                        Spacer()
+                        
+                        Button("Close") {
+                            showSettings = false
+                        }
+                        .keyboardShortcut(.escape)
                     }
-                    .frame(width: 400, height: 400)
-                    .fixedSize()
+                    .padding(20)
+                    .frame(width: 440, height: 500)
                 }
             }
             .padding(.horizontal)
@@ -238,158 +276,73 @@ struct ContentView: View {
         .padding()
         .frame(minWidth: 600, minHeight: 700)
         .sheet(isPresented: $showSettings) {
-            SettingsView(apiKey: $apiKey, openAIService: openAIService)
-        }
-    }
-}
-
-struct SettingsView: View {
-    @Binding var apiKey: String
-    @ObservedObject var openAIService: OpenAIService
-    @Environment(\.dismiss) var dismiss
-    @State private var showAPIKey = false
-    @State private var selectedModelId: String
-    
-    init(apiKey: Binding<String>, openAIService: OpenAIService) {
-        self._apiKey = apiKey
-        self.openAIService = openAIService
-        self._selectedModelId = State(initialValue: openAIService.selectedModel)
-    }
-    
-    var body: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack {
+            VStack(spacing: 20) {
+                // Header
                 Text("Settings")
-                    .font(.system(size: 32, weight: .bold))
-                Spacer()
-                Button("Done") {
-                    dismiss()
-                }
-                .buttonStyle(.borderedProminent)
-            }
-            .padding(.horizontal, 40)
-            .padding(.vertical, 20)
-            .background(Color(.windowBackgroundColor))
-            
-            // Main Content in ScrollView
-            ScrollView {
-                VStack(spacing: 40) {
-                    // API Key Section
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("1. Enter Your OpenAI API Key")
-                            .font(.system(size: 24, weight: .semibold))
-                        
-                        VStack(alignment: .leading, spacing: 12) {
-                            HStack {
-                                if showAPIKey {
-                                    TextField("Paste your API key here", text: $apiKey)
-                                        .textFieldStyle(.roundedBorder)
-                                        .font(.system(size: 18))
-                                        .frame(height: 44)
-                                } else {
-                                    SecureField("Paste your API key here", text: $apiKey)
-                                        .textFieldStyle(.roundedBorder)
-                                        .font(.system(size: 18))
-                                        .frame(height: 44)
-                                }
-                                
-                                Button(action: { showAPIKey.toggle() }) {
-                                    Image(systemName: showAPIKey ? "eye.slash.fill" : "eye.fill")
-                                        .font(.system(size: 20))
-                                        .foregroundColor(.secondary)
-                                }
-                                .buttonStyle(.plain)
-                                .frame(width: 44, height: 44)
+                    .font(.title)
+                    .bold()
+                
+                // Content
+                VStack(spacing: 20) {
+                    // API Settings
+                    GroupBox {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("API Settings")
+                                .font(.headline)
+                            SecureField("OpenAI API Key", text: $apiKey)
+                                .textFieldStyle(.roundedBorder)
+                            Button("Save API Key") {
+                                openAIService.updateAPIKey(apiKey)
+                                UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
                             }
+                            .buttonStyle(.borderedProminent)
                         }
-                        .onChange(of: apiKey) { newValue in
-                            Task { @MainActor in
-                                openAIService.updateAPIKey(newValue)
-                            }
-                        }
+                        .padding(5)
                     }
                     
-                    // Model Selection Section
-                    VStack(alignment: .leading, spacing: 20) {
-                        Text("2. Choose Your Model")
-                            .font(.system(size: 24, weight: .semibold))
-                        
-                        if !openAIService.availableModels.isEmpty {
-                            VStack(spacing: 16) {
-                                ForEach(openAIService.availableModels, id: \.self) { model in
-                                    Button(action: {
-                                        withAnimation {
-                                            selectedModelId = model
-                                            openAIService.updateSelectedModel(model)
-                                        }
-                                    }) {
-                                        HStack(spacing: 16) {
-                                            Image(systemName: selectedModelId == model ? "checkmark.circle.fill" : "circle")
-                                                .font(.system(size: 24))
-                                                .foregroundColor(selectedModelId == model ? .accentColor : .secondary)
-                                            
-                                            VStack(alignment: .leading, spacing: 4) {
-                                                Text(model)
-                                                    .font(.system(size: 18, design: .monospaced))
-                                                Text(modelDescription(for: model))
-                                                    .font(.system(size: 14))
-                                                    .foregroundColor(.secondary)
-                                            }
-                                            Spacer()
-                                        }
-                                        .padding(16)
-                                        .background(
-                                            RoundedRectangle(cornerRadius: 12)
-                                                .fill(Color(.windowBackgroundColor))
-                                                .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
-                                        )
-                                    }
-                                    .buttonStyle(.plain)
-                                }
+                    // Appearance Settings
+                    GroupBox {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Appearance")
+                                .font(.headline)
+                            Toggle(isOn: $isDarkMode) {
+                                Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
                             }
-                            
-                            Text("Note: GPT-4 models provide higher quality results but may be slower and more expensive.")
-                                .font(.system(size: 14))
-                                .foregroundColor(.secondary)
-                                .padding(.top, 8)
-                        } else {
-                            HStack {
-                                Image(systemName: "key.fill")
-                                    .font(.system(size: 24))
-                                Text("Enter your API key to see available models")
-                                    .font(.system(size: 18))
-                            }
-                            .foregroundColor(.secondary)
-                            .frame(maxWidth: .infinity)
-                            .padding(24)
-                            .background(Color(.windowBackgroundColor))
-                            .cornerRadius(12)
                         }
+                        .padding(5)
+                    }
+                    
+                    // Debug Settings
+                    GroupBox {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("Debug")
+                                .font(.headline)
+                            Toggle("Show Debug Logs", isOn: $showDebugLogs)
+                            if showDebugLogs {
+                                ScrollView {
+                                    Text(openAIService.debugLog)
+                                        .font(.system(.caption, design: .monospaced))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                .frame(height: 100)
+                                .background(Color(.textBackgroundColor))
+                                .cornerRadius(4)
+                            }
+                        }
+                        .padding(5)
                     }
                 }
-                .padding(40)
+                .frame(width: 400)
+                
+                Spacer()
+                
+                Button("Close") {
+                    showSettings = false
+                }
+                .keyboardShortcut(.escape)
             }
+            .padding(20)
+            .frame(width: 440, height: 500)
         }
-        .frame(width: 700, height: 600)
-        .background(Color(.textBackgroundColor))
-    }
-    
-    private func modelDescription(for model: String) -> String {
-        let model = model.lowercased()
-        if model.contains("gpt-4") {
-            if model.contains("turbo") {
-                return "Latest GPT-4 model with improved performance"
-            } else {
-                return "Most capable GPT-4 model for complex tasks"
-            }
-        } else if model.contains("gpt-3.5") {
-            if model.contains("turbo") {
-                return "Fast and cost-effective for most tasks"
-            } else {
-                return "Standard GPT-3.5 model for general use"
-            }
-        }
-        return "OpenAI language model"
     }
 } 
