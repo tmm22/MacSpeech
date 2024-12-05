@@ -1,43 +1,28 @@
-# MacSpeechApp v1.0.4
+# MacSpeechApp v1.1.1
 
 ## 🚀 New Features & Improvements
-- Added comprehensive advanced usage documentation
-- Enhanced voice selection strategies
-- Added power user workflows
-- Improved integration examples
-
-## 📝 Documentation Updates
-- Added detailed Advanced Usage Guide covering:
-  - Text improvement techniques
-  - Voice selection strategies
-  - Power user workflows
-  - Integration examples
-  - Performance optimization
-  - Troubleshooting guides
-- Enhanced main documentation with better navigation
-- Added cross-references between documentation sections
-- Improved quick links and feature descriptions
-
-## 🎨 Voice Selection Guide
-Added detailed voice recommendations for different content types:
-- Business Reports: Onyx (Professional, authoritative)
-- Children's Stories: Shimmer (Gentle, engaging)
-- News Articles: Alloy (Neutral, clear)
-- Educational Content: Echo (Warm, instructional)
-- Creative Writing: Fable (Dynamic, expressive)
-- Marketing Copy: Nova (Energetic, persuasive)
-
-## 💡 Advanced Features
-- Added content creation workflows
-- Added quality assurance guidelines
-- Added performance optimization tips
-- Added integration examples with other apps
+- Fixed AudioRecorder permissions handling
+- Added proper error states and user feedback
+- Improved permission request flow
+- Added better error handling in ContentView
 
 ## 🔧 Technical Improvements
-- Added debug logging patterns
-- Enhanced API usage optimization guide
-- Added memory management recommendations
-- Added network optimization tips
+- Updated privacy keys in Info.plist
+- Added proper error handling for all potential failure points
+- Improved permission request workflow
+- Enhanced error state display in UI
+
+## 🎨 UI Improvements
+- Added clear error messages for permission issues
+- Added dedicated "Request Permissions" button
+- Improved permission request UI flow
+- Made System Settings button more intuitive
+
+## 🐛 Bug Fixes
+- Fixed app crashing issues related to permissions
+- Fixed AudioRecorder initialization timing
+- Fixed permission request handling
+- Fixed error display in ContentView
 
 ## Installation
 1. Download MacSpeechApp.dmg
