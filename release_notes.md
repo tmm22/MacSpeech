@@ -1,31 +1,22 @@
-# MacSpeechApp v1.1.2
+# MacSpeechApp v1.1.3
 
-## 📝 Documentation Improvements
-- Added comprehensive contribution guide
-- Added documentation checklists for different change types
-- Enhanced main documentation with better organization
-- Added detailed guidelines for contributors
-
-## 🔧 Process Improvements
-- Improved release notes handling
-- Added structured documentation process
+## 🔧 Technical Improvements
+- Fixed GitHub release notes workflow
+- Improved release automation process
 - Enhanced version management
-- Added clear contribution workflows
+- Streamlined release documentation
 
-## 🎨 Documentation Structure
-- Added new contribution guide sections:
-  - Feature addition checklist
-  - Bug fix documentation process
-  - UI change documentation
-  - Release process checklist
-- Improved documentation organization
-- Added clear examples and guidelines
+## 🚀 Process Improvements
+- Release notes now properly reflect current changes
+- Automated release process improved
+- Better version tracking
+- Enhanced release documentation flow
 
-## 💡 Developer Experience
-- Added commit message guidelines
-- Added pull request templates
-- Enhanced documentation workflow
-- Improved contribution process
+## 📝 Documentation Updates
+- Release notes now accurately track changes
+- Version history properly maintained
+- Improved changelog generation
+- Better release documentation structure
 
 ## Installation
 1. Download MacSpeechApp.dmg
