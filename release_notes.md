@@ -1,22 +1,22 @@
-# MacSpeechApp v1.1.8
+# MacSpeechApp v1.1.11
 
-## 🔄 Workflow Improvements
-- Enhanced release process
-- Improved build automation
-- Better asset management
-- Streamlined deployment
+## 🔄 Release Workflow
+- Simplified GitHub release process
+- Enhanced release automation
+- Improved asset handling
+- Better release reliability
 
 ## 🛠 Technical Updates
-- Updated release workflow
-- Improved build scripts
-- Enhanced version management
-- Better release automation
+- Updated GitHub Actions workflow
+- Streamlined release creation
+- Improved error handling
+- Better release validation
 
-## 🚀 Deployment
-- Streamlined release process
-- Improved asset handling
-- Better version tracking
-- Enhanced deployment reliability
+## 🚀 Distribution
+- Reliable DMG distribution
+- Improved release process
+- Better release accessibility
+- Enhanced download experience
 
 ## Installation
 1. Download MacSpeechApp.dmg
