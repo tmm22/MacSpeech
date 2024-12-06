@@ -6,47 +6,22 @@ on:
       - 'v*'
 
 jobs:
-  build:
+  release:
     runs-on: macos-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      
-      - name: Set up Swift
-        uses: swift-actions/setup-swift@v1
-      
-      - name: Get version from tag
-        id: get_version
-        run: |
-          VERSION=${GITHUB_REF#refs/tags/v}
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
       
       - name: Build App
         run: |
           chmod +x build.sh
           ./build.sh
       
-      - name: Create Release Assets
-        run: |
-          cd Build
-          zip "MacSpeechApp-${{ env.VERSION }}.zip" MacSpeechApp.dmg
-      
-      - name: Read Release Notes
-        id: release_notes
-        run: |
-          echo "NOTES<<EOF" >> $GITHUB_OUTPUT
-          cat release_notes.md >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
-      
       - name: Create Release
-        id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: ncipollo/release-action@v1
         with:
-          name: "MacSpeechApp ${{ env.VERSION }}"
-          body_path: release_notes.md
-          files: |
-            Build/MacSpeechApp-${{ env.VERSION }}.zip
-            Build/MacSpeechApp.dmg 
+          artifacts: "Build/MacSpeechApp.dmg"
+          bodyFile: "release_notes.md"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          allowUpdates: true
