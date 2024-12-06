@@ -1,34 +1,36 @@
-# MacSpeechApp v1.1.4
+# MacSpeechApp v1.1.5
 
-Fixed GitHub release notes workflow and improved release process.
+## 🚀 New Features
+- Added automatic clipboard copy option
+- Added manual copy button for improved text
+- Enhanced clipboard integration
+- Added clipboard settings
 
-## What's New
+## 🎨 UI Improvements
+- Added copy button to improved text section
+- Added auto-copy toggle in settings
+- Improved visual feedback for copying
+- Enhanced settings organization
 
-### Technical Improvements
-- Fixed GitHub release notes workflow
-- Improved release automation process
-- Enhanced version management
-- Streamlined release documentation
+## 📝 Documentation Updates
+- Added clipboard feature documentation
+- Updated quick start guide
+- Enhanced settings documentation
+- Added clipboard workflow examples
 
-### Process Improvements
-- Release notes now properly reflect current changes
-- Automated release process improved
-- Better version tracking
-- Enhanced release documentation flow
+## 🔧 Technical Improvements
+- Added system clipboard integration
+- Enhanced settings persistence
+- Improved clipboard management
+- Added clipboard status feedback
 
-### Documentation Updates
-- Release notes now accurately track changes
-- Version history properly maintained
-- Improved changelog generation
-- Better release documentation structure
-
-### Installation
+## Installation
 1. Download MacSpeechApp.dmg
 2. Open the DMG file
 3. Drag MacSpeechApp to your Applications folder
 4. Launch and enter your OpenAI API key
 
-### Requirements
+## Requirements
 - macOS 11.0 or later
 - OpenAI API key
 - Internet connection
