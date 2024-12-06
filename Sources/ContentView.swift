@@ -33,102 +33,97 @@ struct ContentView: View {
                         .imageScale(.large)
                 }
                 .sheet(isPresented: $showSettings) {
-                    VStack(spacing: 20) {
-                        // Header
+                    VStack {
                         Text("Settings")
                             .font(.title)
                             .bold()
+                            .padding(.top, 20)
                         
-                        // Content
-                        VStack(spacing: 20) {
-                            // API Settings
-                            GroupBox {
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("API Settings")
-                                        .font(.headline)
-                                    SecureField("OpenAI API Key", text: $apiKey)
-                                        .textFieldStyle(.roundedBorder)
-                                    Button("Save API Key") {
-                                        openAIService.updateAPIKey(apiKey)
-                                        UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
+                        ScrollView(.vertical, showsIndicators: true) {
+                            VStack(spacing: 20) {
+                                // API Settings
+                                GroupBox {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Text("API Settings")
+                                            .font(.headline)
+                                        SecureField("OpenAI API Key", text: $apiKey)
+                                            .textFieldStyle(.roundedBorder)
+                                        Button("Save API Key") {
+                                            openAIService.updateAPIKey(apiKey)
+                                            UserDefaults.standard.set(apiKey, forKey: "OpenAIAPIKey")
+                                        }
+                                        .buttonStyle(.borderedProminent)
                                     }
-                                    .buttonStyle(.borderedProminent)
+                                    .padding(10)
                                 }
-                                .padding(5)
-                            }
-                            
-                            // Model Selection
-                            GroupBox {
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("Model Selection")
-                                        .font(.headline)
-                                    if openAIService.availableModels.isEmpty {
-                                        Text("No models available. Please check your API key.")
-                                            .foregroundColor(.secondary)
-                                    } else {
-                                        Picker("Model", selection: $openAIService.selectedModel) {
-                                            ForEach(openAIService.availableModels, id: \.self) { model in
-                                                Text(model)
-                                                    .tag(model)
+                                
+                                // Model Selection
+                                GroupBox {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Text("Model Selection")
+                                            .font(.headline)
+                                        if openAIService.availableModels.isEmpty {
+                                            Text("No models available. Please check your API key.")
+                                                .foregroundColor(.secondary)
+                                        } else {
+                                            Picker("Model", selection: $openAIService.selectedModel) {
+                                                ForEach(openAIService.availableModels, id: \.self) { model in
+                                                    Text(model)
+                                                        .tag(model)
+                                                }
                                             }
+                                            .pickerStyle(.menu)
                                         }
-                                        .pickerStyle(.menu)
-                                        
-                                        Text("GPT-4 models provide better results but cost more. GPT-3.5 models are faster and more cost-effective.")
-                                            .font(.caption)
-                                            .foregroundColor(.secondary)
-                                            .fixedSize(horizontal: false, vertical: true)
                                     }
+                                    .padding(10)
                                 }
-                                .padding(5)
-                            }
-                            
-                            // Appearance Settings
-                            GroupBox {
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("Appearance")
-                                        .font(.headline)
-                                    Toggle(isOn: $isDarkMode) {
-                                        Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
-                                    }
-                                    Toggle(isOn: $autoCopyImprovedText) {
-                                        Label("Auto-copy improved text", systemImage: "doc.on.doc")
-                                    }
-                                }
-                                .padding(5)
-                            }
-                            
-                            // Debug Settings
-                            GroupBox {
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("Debug")
-                                        .font(.headline)
-                                    Toggle("Show Debug Logs", isOn: $showDebugLogs)
-                                    if showDebugLogs {
-                                        ScrollView {
-                                            Text(openAIService.debugLog)
-                                                .font(.system(.caption, design: .monospaced))
-                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                // Appearance Settings
+                                GroupBox {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Text("Appearance")
+                                            .font(.headline)
+                                        Toggle(isOn: $isDarkMode) {
+                                            Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
                                         }
-                                        .frame(height: 100)
-                                        .background(Color(.textBackgroundColor))
-                                        .cornerRadius(4)
+                                        Toggle(isOn: $autoCopyImprovedText) {
+                                            Label("Auto-copy improved text", systemImage: "doc.on.doc")
+                                        }
                                     }
+                                    .padding(10)
                                 }
-                                .padding(5)
+                                
+                                // Debug Settings
+                                GroupBox {
+                                    VStack(alignment: .leading, spacing: 10) {
+                                        Text("Debug")
+                                            .font(.headline)
+                                        Toggle("Show Debug Logs", isOn: $showDebugLogs)
+                                        if showDebugLogs {
+                                            ScrollView {
+                                                Text(openAIService.debugLog)
+                                                    .font(.system(.caption, design: .monospaced))
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                            }
+                                            .frame(height: 100)
+                                            .background(Color(.textBackgroundColor))
+                                            .cornerRadius(4)
+                                        }
+                                    }
+                                    .padding(10)
+                                }
                             }
+                            .padding(.horizontal, 20)
                         }
-                        .frame(width: 400)
-                        
-                        Spacer()
                         
                         Button("Close") {
                             showSettings = false
                         }
                         .keyboardShortcut(.escape)
+                        .padding(.bottom, 20)
                     }
-                    .padding(20)
-                    .frame(width: 440, height: 500)
+                    .frame(width: 440)
+                    .background(Color(.windowBackgroundColor))
                 }
             }
             .padding(.horizontal)

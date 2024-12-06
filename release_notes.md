@@ -1,28 +1,22 @@
-# MacSpeechApp v1.1.5
+# MacSpeechApp v1.1.6
 
-## 🚀 New Features
-- Added automatic clipboard copy option
-- Added manual copy button for improved text
-- Enhanced clipboard integration
-- Added clipboard settings
+## 🐛 Bug Fixes
+- Fixed settings panel layout issues
+- Improved settings panel scrolling
+- Fixed content cutoff in settings
+- Enhanced settings panel responsiveness
 
 ## 🎨 UI Improvements
-- Added copy button to improved text section
-- Added auto-copy toggle in settings
-- Improved visual feedback for copying
+- Better settings panel padding
+- Improved visual consistency
 - Enhanced settings organization
-
-## 📝 Documentation Updates
-- Added clipboard feature documentation
-- Updated quick start guide
-- Enhanced settings documentation
-- Added clipboard workflow examples
+- Better space utilization
 
 ## 🔧 Technical Improvements
-- Added system clipboard integration
-- Enhanced settings persistence
-- Improved clipboard management
-- Added clipboard status feedback
+- Optimized settings panel layout
+- Improved window background handling
+- Enhanced content scrolling
+- Better layout management
 
 ## Installation
 1. Download MacSpeechApp.dmg
