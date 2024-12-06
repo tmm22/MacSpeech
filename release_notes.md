@@ -1,22 +1,22 @@
-# MacSpeechApp v1.1.6
+# MacSpeechApp v1.1.8
 
-## 🐛 Bug Fixes
-- Fixed settings panel layout issues
-- Improved settings panel scrolling
-- Fixed content cutoff in settings
-- Enhanced settings panel responsiveness
+## 🔄 Workflow Improvements
+- Enhanced release process
+- Improved build automation
+- Better asset management
+- Streamlined deployment
 
-## 🎨 UI Improvements
-- Better settings panel padding
-- Improved visual consistency
-- Enhanced settings organization
-- Better space utilization
+## 🛠 Technical Updates
+- Updated release workflow
+- Improved build scripts
+- Enhanced version management
+- Better release automation
 
-## 🔧 Technical Improvements
-- Optimized settings panel layout
-- Improved window background handling
-- Enhanced content scrolling
-- Better layout management
+## 🚀 Deployment
+- Streamlined release process
+- Improved asset handling
+- Better version tracking
+- Enhanced deployment reliability
 
 ## Installation
 1. Download MacSpeechApp.dmg
