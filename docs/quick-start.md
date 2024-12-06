@@ -22,82 +22,125 @@
    - Click "Save API Key"
    - (Optional) Toggle dark mode if desired
 
-### 3. Basic Usage (2 minutes)
-1. **Improve Text**
-   - Type or paste your text in the "Input Text" box
-   - Click "Improve Text"
-   - Wait for processing (usually 2-5 seconds)
-   - Your improved text appears in the "Improved Text" box
+3. **Grant Permissions**
+   - Allow microphone access when prompted
+   - Allow speech recognition when prompted
+   - Or enable later in System Settings > Privacy
 
-2. **Text-to-Speech**
-   - Select a voice from the dropdown:
-     - Alloy: Best for neutral content
-     - Echo: Great for narration
-     - Fable: Perfect for storytelling
-     - Onyx: Ideal for formal content
-     - Nova: Good for energetic content
-     - Shimmer: Best for gentle content
-   - Click the speaker button 🔊
-   - Listen to your text
+### 3. Basic Usage (2 minutes)
+
+#### Text Input Methods
+1. **Type Text**
+   - Enter text directly in the input field
+   - Paste text from clipboard
+
+2. **Speech-to-Text**
+   - Click the microphone button
+   - Speak clearly into your microphone
+   - Click again to stop recording
+   - Review transcribed text
+
+#### Improving Text
+1. Click "Improve Text"
+2. Wait for processing (usually 2-5 seconds)
+3. Review improved text in output box
+4. Text is automatically copied to clipboard if auto-copy is enabled
+
+#### Copying Text
+1. **Automatic Copy**
+   - Enable auto-copy in Settings
+   - Improved text will copy automatically
+   - No additional action needed
+
+2. **Manual Copy**
+   - Click the "Copy" button (document icon)
+   - Or use the auto-copy setting in preferences
+   - Text is copied to system clipboard
+
+#### Text-to-Speech
+1. Select a voice from the dropdown:
+   - Alloy: Best for neutral content
+   - Echo: Great for narration
+   - Fable: Perfect for storytelling
+   - Onyx: Ideal for formal content
+   - Nova: Good for energetic content
+   - Shimmer: Best for gentle content
+2. Click the speaker button 🔊
+3. Listen to your text
 
 ### 4. Advanced Features (Optional)
-1. **Appearance**
-   - Toggle dark mode in settings
-   - System automatically saves your preference
 
-2. **Debug Logging**
-   - Enable "Show Debug Logs" in settings
-   - View API interactions and processing details
-   - Useful for troubleshooting
+#### Speech-to-Text Tips
+- Use in quiet environment
+- Speak clearly and naturally
+- Use punctuation words ("period", "comma")
+- Review and edit transcription
+- Combine with text improvement
 
-### 5. Community Participation
-1. **Quick Access to GitHub**
-   - Click the "Contribute on GitHub" button at the bottom
-   - Access the source code
-   - Report issues
-   - Suggest improvements
+#### Appearance
+- Toggle dark mode in settings
+- System automatically saves your preference
 
-2. **Getting Involved**
-   - Star the repository to show support
-   - Watch for updates
-   - Fork to contribute code
+#### Debug Logging
+- Enable "Show Debug Logs" in settings
+- View API interactions and processing details
+- Useful for troubleshooting
 
-### Common Issues & Solutions
+#### Clipboard Options
+- Enable auto-copy in settings
+- Use manual copy button as needed
+- Combine with text improvement
+- System clipboard integration
 
-1. **Text Not Improving**
-   - Check your internet connection
-   - Verify API key is correct
-   - Try with shorter text first
+### 5. Common Workflows
 
-2. **Speech Not Working**
-   - Check system audio
-   - Ensure text is present
-   - Try a different voice
+#### Document Creation
+1. Use speech-to-text for initial draft
+2. Review transcribed text
+3. Click "Improve" to enhance
+4. Use text-to-speech to verify
 
-3. **App Not Responding**
-   - Check internet connection
-   - Restart the app
-   - Verify API key status
+#### Content Editing
+1. Paste existing text
+2. Click "Improve" to enhance
+3. Select voice and listen
+4. Make final adjustments
 
-### Tips & Tricks
+#### Mixed Input
+1. Type some text
+2. Add spoken sections
+3. Improve combined text
+4. Review with text-to-speech
 
-1. **For Best Results**
-   - Keep input text clear and concise
-   - Use appropriate punctuation
-   - Try different voices for different content types
+### 6. Troubleshooting
 
-2. **Keyboard Shortcuts**
-   - ⌘+V: Paste text
-   - ⌘+C: Copy improved text
-   - ⌘+,: Open settings
+#### Speech-to-Text Issues
+- Check microphone permissions
+- Verify microphone selection
+- Ensure quiet environment
+- Try shorter segments
 
-3. **Performance**
-   - Clear debug logs periodically
-   - Restart app if used extensively
-   - Keep text lengths reasonable
+#### Text Improvement
+- Check API key
+- Verify internet connection
+- Try shorter text chunks
+- Enable debug logs
 
-### Need Help?
-- Click "Contribute on GitHub" to access community support
-- Check our [FAQ](faq.md)
-- Submit issues on [GitHub](https://github.com/tmm22/MacSpeech/issues)
-- View [full documentation](index.md) 
+#### Audio Playback
+- Check system volume
+- Verify audio output
+- Try different voices
+- Restart if needed
+
+### 7. Getting Help
+1. Check our [FAQ](faq.md)
+2. Review [detailed documentation](index.md)
+3. [Report issues](https://github.com/tmm22/MacSpeech/issues)
+4. View [advanced guides](advanced-usage.md)
+
+### 8. Next Steps
+- Explore different voices
+- Try various input methods
+- Check advanced settings
+- Join our community
+- Share feedback 

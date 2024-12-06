@@ -51,12 +51,20 @@ The Settings panel in MacSpeechApp provides comprehensive control over the appli
 |---------|-------------|---------|--------|
 | Dark Mode | Toggle dark/light theme | System | Persists between sessions |
 | Theme | Visual style settings | System | Follows macOS settings |
+| Auto-Copy | Automatically copy improved text | Off | Copies to clipboard |
 
 #### Dark Mode Benefits
 - Reduced eye strain
 - Better for low-light environments
 - Professional appearance
 - System integration
+
+#### Auto-Copy Features
+- Automatic clipboard update
+- Immediate availability
+- System integration
+- Workflow optimization
+- Silent operation
 
 ### Debug Settings
 | Setting | Description | Default | Notes |
@@ -89,6 +97,13 @@ The Settings panel in MacSpeechApp provides comprehensive control over the appli
 - Use appropriate model for task
 - Monitor system resources
 - Close settings when not needed
+
+#### Auto-Copy Management
+- Enable for repetitive tasks
+- Disable for sensitive content
+- Monitor clipboard usage
+- Clear clipboard when needed
+- Use with system features
 
 ## Troubleshooting
 

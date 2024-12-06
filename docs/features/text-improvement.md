@@ -35,6 +35,7 @@ The Text Improvement feature uses OpenAI's GPT models to enhance your text while
 | GPT Model | Choose AI model | GPT-3.5 | Settings > Model Selection |
 | Debug Logging | Show API interactions | Off | Settings > Debug |
 | API Key | Your OpenAI key | None | Settings > API Settings |
+| Auto-Copy | Automatically copy improved text | Off | Settings > Appearance |
 
 ## Advanced Usage
 - **Content-Based Model Selection**
@@ -52,12 +53,19 @@ The Text Improvement feature uses OpenAI's GPT models to enhance your text while
     - Quick edits
   ```
 
-- **Batch Processing**
+- **Clipboard Integration**
   ```
-  1. Split long content into sections
-  2. Process each section
-  3. Review and combine
-  4. Final pass on complete text
+  Automatic Mode:
+  1. Enable auto-copy in settings
+  2. Improve text
+  3. Result automatically in clipboard
+  4. Paste anywhere
+
+  Manual Mode:
+  1. Improve text
+  2. Click copy button
+  3. Paste where needed
+  4. Repeat as needed
   ```
 
 ## Best Practices
@@ -68,6 +76,11 @@ The Text Improvement feature uses OpenAI's GPT models to enhance your text while
 - Save original text before processing
 - Process important content in sections
 - Use with speech-to-text for natural flow
+- Enable auto-copy for frequent copying
+- Use manual copy for selective text
+- Check clipboard before pasting
+- Keep original text as backup
+- Use with system clipboard history
 
 ## Troubleshooting
 1. **Problem**: Slow Processing
@@ -119,6 +132,23 @@ The Text Improvement feature uses OpenAI's GPT models to enhance your text while
    "The dilapidated mansion loomed ominously, its shadowy facade concealing decades of neglect."
    ```
 
+4. **Clipboard Workflow**
+   ```
+   With Auto-Copy:
+   1. Enable auto-copy in settings
+   2. Input: "Please improve this text"
+   3. Click improve
+   4. Improved text automatically in clipboard
+   5. Paste in target application
+
+   Without Auto-Copy:
+   1. Input: "Please improve this text"
+   2. Click improve
+   3. Review improved text
+   4. Click copy button
+   5. Paste in target application
+   ```
+
 ## Improvement Strategies
 
 ### Professional Content
@@ -161,6 +191,12 @@ The Text Improvement feature uses OpenAI's GPT models to enhance your text while
    - Listen to results
    - Identify areas for refinement
    - Final improvement pass
+
+3. **With System Clipboard**
+   - Use auto-copy for automation
+   - Check system clipboard history
+   - Combine with text improvement
+   - Integrate with other apps
 
 ## Related Features
 - [Text-to-Speech](text-to-speech.md)

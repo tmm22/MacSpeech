@@ -1,4 +1,5 @@
 import SwiftUI
+import AppKit
 
 struct ContentView: View {
     @StateObject private var openAIService: OpenAIService
@@ -14,6 +15,7 @@ struct ContentView: View {
     @State private var selectedVoice = "alloy"
     @State private var isSpeaking = false
     @AppStorage("isDarkMode") private var isDarkMode = false
+    @AppStorage("autoCopyImprovedText") private var autoCopyImprovedText = false
     
     private let availableVoices = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
     
@@ -89,6 +91,9 @@ struct ContentView: View {
                                     Toggle(isOn: $isDarkMode) {
                                         Label("Dark Mode", systemImage: isDarkMode ? "moon.fill" : "moon")
                                     }
+                                    Toggle(isOn: $autoCopyImprovedText) {
+                                        Label("Auto-copy improved text", systemImage: "doc.on.doc")
+                                    }
                                 }
                                 .padding(5)
                             }
@@ -145,6 +150,10 @@ struct ContentView: View {
                     errorMessage = nil
                     do {
                         improvedText = try await openAIService.improveText(inputText)
+                        if autoCopyImprovedText {
+                            NSPasteboard.general.clearContents()
+                            NSPasteboard.general.setString(improvedText, forType: .string)
+                        }
                     } catch let error as OpenAIError {
                         errorMessage = error.error.message
                         improvedText = "Error: \(error.error.message)"
@@ -224,6 +233,16 @@ struct ContentView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .disabled(improvedText.isEmpty || isSpeaking)
+                    
+                    Button(action: {
+                        NSPasteboard.general.clearContents()
+                        NSPasteboard.general.setString(improvedText, forType: .string)
+                    }) {
+                        Label("Copy", systemImage: "doc.on.doc")
+                            .frame(width: 100)
+                    }
+                    .buttonStyle(.bordered)
+                    .disabled(improvedText.isEmpty)
                 }
                 .padding(.top, 8)
             }
