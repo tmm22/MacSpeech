@@ -27,6 +27,10 @@ cp "$BUILD_DIR/$APP_NAME" "$MACOS_DIR/"
 # Copy Info.plist to correct location
 cp Resources/Info.plist "$CONTENTS_DIR/Info.plist"
 
+# Copy and ensure version.txt is readable
+cp version.txt "$RESOURCES_DIR/version.txt"
+chmod 644 "$RESOURCES_DIR/version.txt"
+
 # Copy other resources
 if [ -d "Resources" ]; then
     for file in Resources/*; do
