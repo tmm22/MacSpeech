@@ -70,6 +70,7 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - Choose GPT model
 - Toggle dark mode
 - Debug logging for troubleshooting
+- Check for updates
 - [Advanced settings usage](advanced-usage.md#advanced-settings-usage)
 - [Settings guide](features/settings.md)
 
@@ -89,6 +90,7 @@ For detailed information about each feature, visit our feature guides:
 - [Appearance Guide](features/appearance.md)
 - [Community Guide](features/community.md)
 - [Power User Guide](features/power-user.md)
+- [Check for Updates Guide](features/updates.md)
 
 ## System Requirements
 
