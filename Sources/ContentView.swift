@@ -48,7 +48,13 @@ struct ContentView: View {
     @State private var updateAvailable = false
     
     private let openAIVoices = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
-    private let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.1.48"
+    private var currentVersion: String {
+        if let versionFileURL = Bundle.main.url(forResource: "version", withExtension: "txt"),
+           let versionString = try? String(contentsOf: versionFileURL, encoding: .utf8) {
+            return versionString.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return "1.1.48" // Fallback version
+    }
     
     private func exportPrompts() {
         let savePanel = NSSavePanel()
