@@ -24,52 +24,17 @@ mkdir -p "$FRAMEWORKS_DIR"
 # Copy executable
 cp "$BUILD_DIR/$APP_NAME" "$MACOS_DIR/"
 
-# Copy resources
-if [ -d "Resources" ]; then
-    cp -r Resources/* "$RESOURCES_DIR/"
-fi
+# Copy Info.plist to correct location
+cp Resources/Info.plist "$CONTENTS_DIR/Info.plist"
 
-# Create Info.plist
-cat > "$CONTENTS_DIR/Info.plist" << EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>CFBundleExecutable</key>
-    <string>$APP_NAME</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.example.$APP_NAME</string>
-    <key>CFBundleName</key>
-    <string>$APP_NAME</string>
-    <key>CFBundlePackageType</key>
-    <string>APPL</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.1.0</string>
-    <key>CFBundleVersion</key>
-    <string>1.1.0</string>
-    <key>LSMinimumSystemVersion</key>
-    <string>13.0</string>
-    <key>LSApplicationCategoryType</key>
-    <string>public.app-category.productivity</string>
-    <key>LSUIElement</key>
-    <false/>
-    <key>NSHighResolutionCapable</key>
-    <true/>
-    <key>NSCameraUsageDescription</key>
-    <string>MacSpeech requires camera access for audio session setup.</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>MacSpeech needs access to your microphone to record speech for transcription.</string>
-    <key>NSPrincipalClass</key>
-    <string>NSApplication</string>
-    <key>NSSpeechRecognitionUsageDescription</key>
-    <string>MacSpeech needs access to speech recognition to transcribe your speech.</string>
-    <key>CFBundleSupportedPlatforms</key>
-    <array>
-        <string>MacOSX</string>
-    </array>
-</dict>
-</plist>
-EOF
+# Copy other resources
+if [ -d "Resources" ]; then
+    for file in Resources/*; do
+        if [ "$(basename "$file")" != "Info.plist" ]; then
+            cp -r "$file" "$RESOURCES_DIR/"
+        fi
+    done
+fi
 
 echo "📦 Creating DMG..."
 DMG_DIR="Build"
