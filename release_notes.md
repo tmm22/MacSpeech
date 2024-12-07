@@ -1,16 +1,16 @@
-# MacSpeechApp v1.1.47
+# MacSpeechApp v1.1.48
 
-## 🐛 Bug Fixes
-- Fixed settings sheet not showing all sections
-- Fixed settings sheet presentation
-- Fixed settings sheet layout
-- Fixed settings sheet scrolling
+## 🚀 New Features
+- Added "Check for Updates" feature in settings
+- Added automatic update check on app launch
+- Added update notification when new version is available
+- Added direct download link for updates
 
 ## 🔧 Improvements
-- Better settings organization
-- Cleaner settings UI
-- Improved settings accessibility
-- Better settings responsiveness
+- Added version comparison logic
+- Added update status indicators
+- Added loading animation during checks
+- Better error handling for update checks
 
 ## Installation
 1. Download MacSpeechApp.dmg
