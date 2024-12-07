@@ -143,6 +143,34 @@ Technical:
    - Dialog: Mix of Alloy and Echo
    - Description: Shimmer
 
+### 7. Keyboard Shortcuts
+
+#### Main Actions
+```text
+⌘I - Improve Text
+⌘P - Play Speech
+⌘⇧C - Copy Improved Text (Command + Shift + C)
+⎋ - Close Settings Panel (Escape)
+```
+
+#### Configuration
+1. **Enable/Disable**
+   - Settings > UI Customization
+   - Toggle "Enable Keyboard Shortcuts"
+   - Affects all shortcuts when disabled
+
+2. **Use Cases**
+   - Quick text improvement
+   - Rapid speech playback
+   - Efficient text copying
+   - Fast settings access
+
+3. **Best Practices**
+   - Learn common shortcuts
+   - Use with auto-copy feature
+   - Combine with word highlighting
+   - Enable for power usage
+
 ### 8. Troubleshooting Advanced Issues
 
 #### API Integration

@@ -11,9 +11,28 @@ class OpenAIService: ObservableObject {
             log("Selected model changed to: \(selectedModel)")
         }
     }
+    @Published var customPrompt: String {
+        didSet {
+            UserDefaults.standard.set(customPrompt, forKey: "CustomPrompt")
+            log("Custom prompt updated")
+        }
+    }
+    @Published var useCustomPrompt: Bool {
+        didSet {
+            UserDefaults.standard.set(useCustomPrompt, forKey: "UseCustomPrompt")
+            log("Use custom prompt set to: \(useCustomPrompt)")
+        }
+    }
     
     private let baseURL = "https://api.openai.com/v1"
     private var urlSession: URLSession
+    private let defaultPrompt = """
+    You are a text improvement assistant. Your task is to:
+    1. Fix grammar and spelling
+    2. Improve punctuation and formatting
+    3. Enhance clarity while maintaining the original meaning and tone
+    4. Return only the corrected text without explanations
+    """
     
     init(apiKey: String) {
         let config = URLSessionConfiguration.default
@@ -22,6 +41,8 @@ class OpenAIService: ObservableObject {
         self.urlSession = URLSession(configuration: config)
         self.apiKey = apiKey
         self.selectedModel = UserDefaults.standard.string(forKey: "SelectedModel") ?? "gpt-3.5-turbo"
+        self.customPrompt = UserDefaults.standard.string(forKey: "CustomPrompt") ?? defaultPrompt
+        self.useCustomPrompt = UserDefaults.standard.bool(forKey: "UseCustomPrompt")
         
         log("OpenAIService initialized")
         Task {
@@ -163,6 +184,14 @@ class OpenAIService: ObservableObject {
         }
     }
     
+    func updateCustomPrompt(_ prompt: String) {
+        customPrompt = prompt
+    }
+    
+    func toggleCustomPrompt(_ enabled: Bool) {
+        useCustomPrompt = enabled
+    }
+    
     func improveText(_ text: String) async throws -> String {
         log("🔄 Starting text improvement process")
         log("📝 Input text: '\(text)'")
@@ -180,13 +209,7 @@ class OpenAIService: ObservableObject {
             payload = [
                 "model": selectedModel,
                 "messages": [
-                    ["role": "system", "content": """
-                    You are a text improvement assistant. Your task is to:
-                    1. Fix grammar and spelling
-                    2. Improve punctuation and formatting
-                    3. Enhance clarity while maintaining the original meaning and tone
-                    4. Return only the corrected text without explanations
-                    """],
+                    ["role": "system", "content": useCustomPrompt ? customPrompt : defaultPrompt],
                     ["role": "user", "content": text]
                 ],
                 "temperature": 0.3,
@@ -215,7 +238,7 @@ class OpenAIService: ObservableObject {
                 throw OpenAIError(error: .init(message: "Invalid response type", type: "invalid_response", param: nil, code: nil))
             }
             
-            log("�� Response status code: \(httpResponse.statusCode)")
+            log(" Response status code: \(httpResponse.statusCode)")
             
             if httpResponse.statusCode != 200 {
                 let errorData = try? JSONDecoder().decode(OpenAIError.self, from: data)
@@ -258,7 +281,7 @@ class OpenAIService: ObservableObject {
         log("🧪 Starting API connection test")
         
         let testText = "this is a test message with bad grammar and no punctuation lets see if it works"
-        log("📝 Test text: '\(testText)'")
+        log("���� Test text: '\(testText)'")
         
         do {
             let improvedText = try await improveText(testText)
@@ -508,18 +531,21 @@ class OpenAIService: ObservableObject {
     ///   - text: The text to convert to speech
     ///   - voice: The voice to use (alloy, echo, fable, onyx, nova, or shimmer)
     ///   - model: The model to use (currently only tts-1 and tts-1-hd are available)
+    ///   - speed: The speed of the speech (0.5 to 2.0)
     /// - Returns: Audio data in MP3 format
     func textToSpeech(
         text: String,
         voice: String = "alloy",
-        model: String = "tts-1"
+        model: String = "tts-1",
+        speed: Float = 1.0
     ) async throws -> Data {
-        log("🎤 Converting text to speech using voice: \(voice)")
+        log("🎤 Converting text to speech using voice: \(voice), speed: \(speed)x")
         
         let payload: [String: Any] = [
             "model": model,
             "input": text,
-            "voice": voice
+            "voice": voice,
+            "speed": speed
         ]
         
         let jsonData = try JSONSerialization.data(withJSONObject: payload)

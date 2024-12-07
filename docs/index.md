@@ -25,6 +25,13 @@ Welcome to the MacSpeechApp documentation. This application helps you improve yo
 - [Advanced text improvement techniques](advanced-usage.md#advanced-text-improvement-techniques)
 - [Detailed guide](features/text-improvement.md)
 
+### Prompt Management
+- Create and save custom prompts
+- Import/export functionality
+- Share prompts with others
+- Backup and restore capabilities
+- [Complete guide](features/prompt-management.md)
+
 ### Text-to-Speech
 - Convert improved text to natural-sounding speech
 - Multiple voice options:

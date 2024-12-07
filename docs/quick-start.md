@@ -40,6 +40,23 @@
    - Click again to stop recording
    - Review transcribed text
 
+#### Keyboard Shortcuts
+1. **Main Actions**
+   - ⌘I - Improve Text
+   - ⌘P - Play Speech
+   - ⌘⇧C - Copy Improved Text
+   - ⎋ (Escape) - Close Settings Panel
+
+2. **Shortcut Settings**
+   - Can be enabled/disabled in Settings > UI Customization
+   - Toggle "Enable Keyboard Shortcuts" option
+   - All shortcuts are disabled when turned off
+
+3. **Quick Access**
+   - Settings: Click gear icon (⚙️)
+   - Debug Logs: Click eye icon
+   - API Test: Available in bottom toolbar
+
 #### Improving Text
 1. Click "Improve Text"
 2. Wait for processing (usually 2-5 seconds)
