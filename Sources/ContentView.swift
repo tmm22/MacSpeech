@@ -46,9 +46,16 @@ struct ContentView: View {
     @State private var isCheckingForUpdates = false
     @State private var latestVersion: String?
     @State private var updateAvailable = false
+    @State private var currentVersion: String = "1.1.48"
     
     private let openAIVoices = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
-    private let currentVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.1.48"
+    
+    private func loadVersion() {
+        if let versionFileURL = Bundle.main.url(forResource: "version", withExtension: "txt"),
+           let versionString = try? String(contentsOf: versionFileURL, encoding: .utf8) {
+            currentVersion = versionString.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+    }
     
     private func exportPrompts() {
         let savePanel = NSSavePanel()
@@ -586,6 +593,12 @@ struct ContentView: View {
             .sheet(isPresented: $showSettings) {
                 settingsView
             }
+            .onAppear {
+                loadVersion()
+                Task {
+                    await checkForUpdates()
+                }
+            }
             
             GroupBox(label: Text("Input Text").bold()) {
                 TextEditor(text: $inputText)
@@ -844,11 +857,6 @@ struct ContentView: View {
             Button("OK", role: .cancel) { }
         } message: {
             Text(alertMessage)
-        }
-        .onAppear {
-            Task {
-                await checkForUpdates()
-            }
         }
     }
 } 
