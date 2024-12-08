@@ -9,6 +9,26 @@ private struct GitHubRelease: Codable {
     let body: String
 }
 
+struct ExamplePromptButton: View {
+    let title: String
+    let prompt: String
+    @Binding var customPromptText: String
+    @ObservedObject var openAIService: OpenAIService
+    
+    var body: some View {
+        Button(action: {
+            customPromptText = prompt
+            openAIService.updateCustomPrompt(prompt)
+            UserDefaults.standard.set(prompt, forKey: "CustomPrompt")
+        }) {
+            Text(title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .buttonStyle(.bordered)
+        .help("Use this example prompt")
+    }
+}
+
 struct ContentView: View {
     @StateObject private var openAIService: OpenAIService
     @StateObject private var elevenLabsService: ElevenLabsService
@@ -47,6 +67,10 @@ struct ContentView: View {
     @State private var latestVersion: String?
     @State private var updateAvailable = false
     @State private var currentVersion: String = "1.1.48"
+<<<<<<< HEAD
+=======
+    @State private var showPromptBuilder = false
+>>>>>>> release/v1.1.49
     
     private let openAIVoices = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
     
@@ -451,8 +475,69 @@ struct ContentView: View {
                             }
                             .help("Enable to use a custom improvement prompt")
                             
+                            Divider()
+                            
+                            Text("Example Prompts & Templates")
+                                .font(.headline)
+                                .padding(.top, 5)
+                            
+                            Text("Click any example below to use it as your custom prompt:")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                            
+                            ScrollView {
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Group {
+                                        ExamplePromptButton(
+                                            title: "Professional Writing",
+                                            prompt: """
+                                            You are a professional writing assistant. Your task is to:
+                                            1. Improve grammar and clarity
+                                            2. Use professional language and tone
+                                            3. Ensure proper formatting
+                                            4. Maintain conciseness
+                                            5. Keep the message clear and effective
+                                            """,
+                                            customPromptText: $customPromptText,
+                                            openAIService: openAIService
+                                        )
+                                        
+                                        ExamplePromptButton(
+                                            title: "Technical Documentation",
+                                            prompt: """
+                                            You are a technical documentation specialist. Your task is to:
+                                            1. Use precise technical language
+                                            2. Maintain clarity and accuracy
+                                            3. Follow technical writing standards
+                                            4. Add proper structure
+                                            5. Ensure consistency in terminology
+                                            """,
+                                            customPromptText: $customPromptText,
+                                            openAIService: openAIService
+                                        )
+                                        
+                                        ExamplePromptButton(
+                                            title: "Creative Writing",
+                                            prompt: """
+                                            You are a creative writing enhancer. Your task is to:
+                                            1. Maintain creative elements
+                                            2. Enhance descriptive language
+                                            3. Improve flow and rhythm
+                                            4. Keep the original style
+                                            5. Add engaging elements while preserving meaning
+                                            """,
+                                            customPromptText: $customPromptText,
+                                            openAIService: openAIService
+                                        )
+                                    }
+                                }
+                            }
+                            .frame(height: 200)
+                            
                             if openAIService.useCustomPrompt {
-                                Text("Current Prompt:")
+                                Divider()
+                                
+                                Text("Current Custom Prompt:")
                                     .font(.subheadline)
                                     .foregroundColor(.secondary)
                                 
@@ -494,6 +579,19 @@ struct ContentView: View {
                                     }
                                     .buttonStyle(.bordered)
                                     .help("Import custom prompts from a file")
+                                }
+                                
+                                Divider()
+                                
+                                Button(action: { showPromptBuilder.toggle() }) {
+                                    Label("Smart Prompt Builder", systemImage: "wand.and.stars")
+                                        .frame(maxWidth: .infinity)
+                                }
+                                .buttonStyle(.bordered)
+                                .help("Open the Smart Prompt Builder to create custom prompts")
+                                .sheet(isPresented: $showPromptBuilder) {
+                                    PromptBuilder(generatedPrompt: $customPromptText)
+                                        .frame(width: 300)
                                 }
                             }
                         }
