@@ -42,7 +42,7 @@ class OpenAIService: ObservableObject {
         self.apiKey = apiKey
         self.selectedModel = UserDefaults.standard.string(forKey: "SelectedModel") ?? "gpt-3.5-turbo"
         self.customPrompt = UserDefaults.standard.string(forKey: "CustomPrompt") ?? defaultPrompt
-        self.useCustomPrompt = UserDefaults.standard.bool(forKey: "UseCustomPrompt")
+        self.useCustomPrompt = UserDefaults.standard.bool(forKey: "UseCustomPrompt") || true
         
         log("OpenAIService initialized")
         Task {
@@ -281,7 +281,7 @@ class OpenAIService: ObservableObject {
         log("🧪 Starting API connection test")
         
         let testText = "this is a test message with bad grammar and no punctuation lets see if it works"
-        log("���� Test text: '\(testText)'")
+        log(" Test text: '\(testText)'")
         
         do {
             let improvedText = try await improveText(testText)

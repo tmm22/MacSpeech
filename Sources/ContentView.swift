@@ -67,10 +67,7 @@ struct ContentView: View {
     @State private var latestVersion: String?
     @State private var updateAvailable = false
     @State private var currentVersion: String = "1.1.48"
-<<<<<<< HEAD
-=======
     @State private var showPromptBuilder = false
->>>>>>> release/v1.1.49
     
     private let openAIVoices = ["alloy", "echo", "fable", "onyx", "nova", "shimmer"]
     
